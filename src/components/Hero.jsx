@@ -12,7 +12,7 @@ const Hero = () => {
                     <p className=' font-medium text-sm md:text-base'>OUR BESTSELLERS</p>
                 </div>
 
-                <h1 className='text-3xl sm:py-3 lg:text-5xl leading-relaxed'>Lastest Arrivals</h1>
+                <h1 className='prata-regular text-3xl sm:py-3 lg:text-5xl leading-relaxed'>Lastest Arrivals</h1>
 
                 <div className='flex items-center gap-2'>
                     <p className='font-semibold text-sm md:text-base'>SHOP NOW</p>
@@ -27,3 +27,5 @@ const Hero = () => {
 }
 
 export default Hero;
+
+
