@@ -69,6 +69,8 @@ const listProduct = async (req,res) => {
 }
 
 
+
+
 // funcion for removing a product
 
 const removeProduct = async (req,res) => {
@@ -103,4 +105,35 @@ const singleProduct = async (req,res) => {
 
 
 
-export {addProduct,listProduct,removeProduct,singleProduct}
+const updateProduct = async (req, res) => {
+    console.log("Request Body:", req.body);  
+    
+    try {
+        const { id, name, description, category, price, image } = req.body;
+        
+        // Check if all required fields are provided
+        if (!id) {
+            return res.status(400).json({ success: false, message: "Product Id is required" });
+        }
+
+        // If you are using mongoose to update
+        const updatedProduct = await productModel.findByIdAndUpdate(id, {
+            name,
+            description,
+            category,
+            price,
+            image
+        }, { new: true });
+
+        if (!updatedProduct) {
+            return res.status(404).json({ success: false, message: "Product not found" });
+        }
+
+        res.status(200).json({ success: true, message: "Product updated!", product: updatedProduct });
+    } catch (error) {
+        console.error("Error in updateProduct:", error);  // Log the exact error
+        res.status(500).json({ success: false, message: error.message });
+    }  };
+  
+
+export {addProduct,listProduct,removeProduct,singleProduct,updateProduct}
